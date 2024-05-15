@@ -1,40 +1,11 @@
 package CTF.ISCC.ChallengeMobile;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Base64;
 
 public class Main {
 	private static int MX(int i, int i2, int i3, int i4, int i5, int[] iArr) {
 		return (((i3 >>> 5) ^ (i2 << 2)) + ((i2 >>> 3) ^ (i3 << 4))) ^ ((i ^ i2) + (iArr[(i4 & 3) ^ i5] ^ i3));
-	}
-
-	private static int[] encrypt(int[] iArr, int[] iArr2) {
-		int length = iArr.length - 1;
-		if (length >= 1) {
-			int i = (52 / (length + 1)) + 6;
-			int i2 = iArr[length];
-			int i3 = 0;
-			while (true) {
-				int i4 = i - 1;
-				if (i <= 0) {
-					break;
-				}
-				i3 -= 0x61c88647;
-				int i5 = (i3 >>> 2) & 3;
-				int i6 = 0;
-				while (i6 < length) {
-					i2 = iArr[i6] + MX(i3, iArr[i6 + 1], i2, i6, i5, iArr2);
-					iArr[i6] = i2;
-					i6++;
-				}
-				i2 = iArr[length] + MX(i3, iArr[0], i2, i6, i5, iArr2);
-				iArr[length] = i2;
-				i = i4;
-			}
-		}
-		return iArr;
 	}
 
 	private static byte[] fixKey(byte[] bArr) {
@@ -111,9 +82,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		int[] encryptIntArray = toIntArray(Base64.getDecoder().decode("JELhssjqRL+YM11/jS+7MySbYZUaRHC8tq3gVNHaqFPfid3V"), false);
+		int[] encryptIntArray = toIntArray(Base64.getDecoder().decode("Ckh/PFCSS/i4kMVw1lswyghOZbIg+W5SymREHNcRg721Tm9w"), false);
 //		System.out.println(Arrays.toString(encryptIntArray));
-		int[] keyIntArray = toIntArray(fixKey("4M21I249n645gE4~".getBytes(StandardCharsets.UTF_8)), true);
+		int[] keyIntArray = toIntArray(fixKey("oM51I504n137gp2~".getBytes(StandardCharsets.UTF_8)), true);
 		byte[] decryptBytes = toByteArray(decrypt(encryptIntArray, keyIntArray), true);
 		assert decryptBytes != null;
 		String str = new String(decryptBytes, StandardCharsets.UTF_8);
