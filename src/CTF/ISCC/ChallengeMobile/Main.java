@@ -82,9 +82,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		int[] encryptIntArray = toIntArray(Base64.getDecoder().decode("Ckh/PFCSS/i4kMVw1lswyghOZbIg+W5SymREHNcRg721Tm9w"), false);
+		int[] encryptIntArray = toIntArray(Base64.getDecoder().decode("r9rQltdOIS/2x3EFUs/HPBCkoSUha0YqwWqzNnjMoGmle3ut"), false);
 //		System.out.println(Arrays.toString(encryptIntArray));
-		int[] keyIntArray = toIntArray(fixKey("oM51I504n137gp2~".getBytes(StandardCharsets.UTF_8)), true);
+		int[] keyIntArray = toIntArray(fixKey("8M21I229n976g9H~".getBytes(StandardCharsets.UTF_8)), true);
 		byte[] decryptBytes = toByteArray(decrypt(encryptIntArray, keyIntArray), true);
 		assert decryptBytes != null;
 		String str = new String(decryptBytes, StandardCharsets.UTF_8);
